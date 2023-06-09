@@ -32,13 +32,12 @@ const Collection = () => {
       nftAddress: collection?.nftAddress,
       tokenId: collection?.tokenId,
         price: toWei(price),
-        startAt: moment.utc(startAt).unix(),
-         endAt: moment.utc(endAt).unix(),
+        startAt: moment(startAt).unix(),
+         endAt: moment(endAt).unix(),
          tokenURI: collection?.tokenURI,
           name: name,
           description: description,
     }
-    console.log(auctionParams)
 
     await toast.promise(
       new Promise(async (resolve, reject) => {

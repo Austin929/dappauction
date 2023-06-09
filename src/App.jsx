@@ -5,7 +5,7 @@ import Footer from './components/Footer'
 import { useEffect, useState } from 'react'
 import PlaceBid from './components/PlaceBid'
 import Collections from './views/Collections'
-import CreateNFT from './components/CreateNFT'
+import MintNFT from './components/MintNFT'
 import Collection from './components/Collection'
 import { ToastContainer } from 'react-toastify'
 import { Route, Routes } from 'react-router-dom'
@@ -18,7 +18,7 @@ function App() {
   const [auction] = useGlobalState('auction')
   const [collections] = useGlobalState('collections')
   useEffect(async () => {
-    await isWallectConnected()
+      await isWallectConnected()
     await loadAuctions().finally(() => setLoaded(true))
     console.log('Blockchain Loaded')
   }, [])
@@ -36,7 +36,7 @@ function App() {
           <Route path="/nft/:id" element={<Nft />} />
         </Routes>
       ) : null}
-      <CreateNFT />
+      <MintNFT />
       {collections ? (
         <>
           <Collection />

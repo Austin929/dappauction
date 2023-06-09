@@ -7,8 +7,8 @@ import { loadCollections } from '../services/blockchain'
 const Collections = () => {
   const [collections] = useGlobalState('collections')
   useEffect(async () => {
-    await loadCollections()
-  })
+      await loadCollections()
+  }, [])
   return (
     <div>
       {collections.length > 0 ? (

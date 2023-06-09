@@ -65,7 +65,7 @@ const Banner = () => {
               flex flex-row justify-center items-center shadow-md shadow-gray-700"
               onClick={() => setGlobalState('boxModal', 'scale-100')}
             >
-              Create NFT
+              Mint
               <BsArrowRightShort className="font-bold animate-pulse" />
             </button>
         </div>

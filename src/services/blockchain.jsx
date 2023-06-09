@@ -5,6 +5,7 @@ import nftAddress from '../abis/nftContractAddress.json'
 import { getGlobalState, setGlobalState } from '../store'
 import { ethers } from 'ethers'
 import Web3 from 'web3'
+import axios from 'axios'
 
 const { ethereum } = window
 const AuctionContractAddress = auctionAddress.address
@@ -153,7 +154,6 @@ const loadAuctions = async () => {
     if (!ethereum) return alert('Please install Metamask')
     const contract = await getAuctionContract()
     const auctions = await contract.getAuctionLists()
-    console.log(auctions[0].endAt.toNumber())
     setGlobalState('auctions', structuredAuctions(auctions))
     setGlobalState(
       'auction',
@@ -206,7 +206,9 @@ const loadCollections = async () => {
     let collections = [];
     for (let i = 0; i < ownerTokenIds.length; i++) {
       const tokenId = ownerTokenIds[i];
-      const tokenURI = await contract.tokenURI(tokenId);
+      let tokenURI = await contract.tokenURI(tokenId);
+      tokenURI = await axios.get(tokenURI);
+      tokenURI = tokenURI.data.image.replace('ipfs://', 'https://ipfs.io/ipfs/')
       const nftAddress = NftContractAddress;
       collections.push({
         nftAddress,
@@ -215,6 +217,23 @@ const loadCollections = async () => {
       })
     }
     setGlobalState('collections', collections)
+  } catch (error) {
+    reportError(error)
+  }
+}
+
+const mintNft = async () => {
+  try {
+    if (!ethereum) return alert('Please install Metamask')
+    const connectedAccount = getGlobalState('connectedAccount')
+    const contract = await getNftContract()
+    tx = await contract.mintToken(
+      {
+        from: connectedAccount,
+      },
+    )
+    await tx.wait()
+    await loadCollections();
   } catch (error) {
     reportError(error)
   }
@@ -263,7 +282,7 @@ const structuredAuctions = (auctions) =>
       name: auction.name,
       description: auction.description,
       startAt: Number(auction.startAt + '000'),
-      endAt: Number(auction.endAt + '000'),
+      endAt: Number(auction.endAt +   '000'),
       status: auction.status,
     }))
     .reverse()
@@ -281,5 +300,6 @@ export {
   withdrawBid,
   updatePrice,
   toWei,
-  completeAuction
+  completeAuction,
+  mintNft
 }
