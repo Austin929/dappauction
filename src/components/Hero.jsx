@@ -49,16 +49,15 @@ const Banner = () => {
     >
       <div className="">
         <h1 className="text-white font-semibold text-5xl py-1">
-          Discover, Collect
+          Discover
         </h1>
         <h1 className="font-semibold text-4xl mb-5 text-white py-1">
-          and Sell
-          <span className="text-green-500 px-1">NFTs</span>.
+          <span className="text-green-500 px-1">NFTs</span>
+          Auction.
         </h1>
         <p className="text-white  font-light">
-          More than 100+ NFT available for collect
         </p>
-        <p className="text-white mb-11 font-light">& sell, get your NFT now.</p>
+        <p className="text-white mb-11 font-light"></p>
         <div className="flex flew-row text-5xl mb-4">
             <button
               className="text-white text-sm p-2 bg-green-500 rounded-sm w-auto 

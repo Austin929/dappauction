@@ -24,9 +24,6 @@ const Auctions = ({ auctions }) => {
 }
 
 const Auction = ({ auction }) => {
-  console.log(auction.startAt + "000" < Date.now())
-  console.log(auction.endAt + "000" < Date.now())
-  console.log(auction.endAt,auction.startAt,Date.now())
   const bid = () => {
     setGlobalState('auction', auction)
     setGlobalState('bidBox', 'scale-100')

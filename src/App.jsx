@@ -1,5 +1,6 @@
 import Nft from './views/Nft'
 import Home from './views/Home'
+import Mint from './views/Mint'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { useEffect, useState } from 'react'
@@ -34,6 +35,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/collections" element={<Collections />} />
           <Route path="/nft/:id" element={<Nft />} />
+          <Route path='/mint' element={<Mint />} />
         </Routes>
       ) : null}
       <MintNFT />

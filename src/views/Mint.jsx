@@ -12,8 +12,7 @@ const Mint = () => {
   return (
     <div
       className="flex flex-col md:flex-row w-full justify-between 
-        items-center mx-auto"
-    >
+        items-center mx-auto" style={{width: 100,height: 200}}>
       <div className="flex flew-row text-5xl mb-4">
             <button
               className="text-white text-sm p-2 bg-green-500 rounded-sm w-auto 
@@ -21,7 +20,6 @@ const Mint = () => {
               onClick={() => setGlobalState('boxModal', 'scale-100')}
             >
               Mint
-              <BsArrowRightShort className="font-bold animate-pulse" />
             </button>
         </div>
       </div>
