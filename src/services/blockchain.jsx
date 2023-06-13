@@ -87,7 +87,8 @@ const createNftAuction = async (auctionParams) => {
     const connectedAccount = getGlobalState('connectedAccount')
     const contract = await getAuctionContract()
     const nftContract = await getNftContract()
-    await nftContract.approve(AuctionContractAddress, auctionParams.tokenId)
+    const approveTx = await nftContract.approve(AuctionContractAddress, auctionParams.tokenId)
+    await approveTx.wait()
     tx = await contract.createAuctionListing(
       auctionParams,
       {
